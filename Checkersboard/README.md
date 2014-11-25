@@ -9,3 +9,4 @@
 7) If you click on a square where a checker has been previously placed (see #6), that checker should disappear and be replaced with an empty board spot, as it was in the beginning.
 8) The code should adhere to standard programming practices, be clean, and indented. Bonus points for creativity.
 9) The code should be commented.
+
