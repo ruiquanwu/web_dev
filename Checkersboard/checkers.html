@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title> CheckersBorad </title>
+</head>
+<body>
+<style>
+div {
+  height: 50px;
+  width: 400px;
+}
+table {
+  clear: both;
+  border: 1px solid black;
+  border-collapse: collapse;
+}
+td {
+  width: 50px;
+}
+
+tr {
+  height: 50px;
+}
+</style>
+
+<div id="header">
+  <p id="p1" style="float:left; color:red;"> </p>
+  <p id="p2" style="float:right; color:blue"> </p>
+</div>
+<script>
+function createCheckersBoard() {
+  var t = document.createElement("TABLE");
+
+  for (var rows = 0; rows < 8; rows++) {
+    var newRow = document.createElement("TR");
+    console.log(newRow);
+    t.appendChild(newRow);
+    for (var cols = 0; cols < 8; cols++) {
+      //define a new cell of the checkers board
+      var newCell = document.createElement("TD");
+      <!--in even row (0, 2, 4...), the even cols (0, 2, 4...) are white-->
+      <!--in odd row (1, 3, 5...), the odd cols (1, 3, 5...)are white-->
+      if(rows % 2 == 0 && cols % 2 == 0 || rows % 2 == 1 && cols % 2 == 1)
+        newCell.setAttribute("style", "background-color: white;");
+      else
+        newCell.setAttribute("style", "background-color: black;");
+
+      <!-- add onclick event -->
+      newCell.onclick=function(){addImage(this);};
+      newRow.appendChild(newCell);
+    }
+  }
+  document.body.appendChild(t);
+}
+
+createCheckersBoard();
+
+function addImage(cel){
+  if(cel.style.backgroundColor === "white")
+    src = "checker_w.jpg";
+  else
+    src = "checker_b.jpg";
+  if(!cel.hasChildNodes()){
+    var img = document.createElement("img");
+    img.src = src;
+    cel.appendChild(img);
+  }else
+    cel.removeChild(cel.childNodes[0]);
+}
+
+function displayName(){
+  p1 = document.getElementById("player1");
+  p2 = document.getElementById("player2");
+  name1 = document.getElementById("p1");
+  name2 = document.getElementById("p2");
+  name1.innerHTML = p1.value;
+  name2.innerHTML = p2.value;
+}
+
+
+</script>
+
+<input id="player1">
+<input id="player2">
+<button id = "btn" onclick = "displayName()"> Start </button>
+
+</body>
+</html>
